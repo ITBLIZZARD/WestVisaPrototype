@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+		<link rel="stylesheet" href="../styles/styles.css">
+		<title>West Visa - Сайт по туризму и путешествиям</title>
+	</head>
+	<body>
+		<header>
+			<nav class="wrapper">
+				<ul>
+					<li class="worktime">
+						<div class="worktime-wrapper"></div>
+						<ul class="worktime-list">
+							<li>понедельник: 8:00 - 00:00</li>
+							<li>вторник: 8:00 - 00:00</li>
+							<li>среда: 8:00 - 00:00</li>
+							<li>четверг: 8:00 - 00:00</li>
+							<li>пятница: 8:00 - 00:00</li>
+							<li>суббота: 8:00 - 06:00</li>
+							<li>воскресенье: 8:00 - 06:00</li>
+						</ul>
+					</li>
+					<a href="tel:+375447508844"><li class="phone-number">+375 (44) 750-88-44</li></a>
+					<a href="mailto:help.westvisa@gmail.com"><li class="email">help.westvisa@gmail.com</li></a>
+					<li><button class="call-button">Заказать звонок</button></li>
+				</ul>
+			</nav>
+			<nav class="menu">
+				<a class="logo" href=""><img src="../images/logo-icon.png">West Visa</a>
+				<ul id="large-menu">
+					<a href=""><li>Главная</li></a>
+					<li class="visa-menu">
+						Визы
+						<ul class="visa-list">
+							<li class="polish-visa">Польская национальная виза
+								<ul class="polish-visa-list">
+									<li>Рабочая виза</li>
+									<li>Гумманитарная виза</li>
+									<li>Студенческая виза</li>
+									<li>Приглашение на работу</li>
+								</ul>
+							</li>
+							<li><a href="">Карта поляка</a></li>
+							<li><a href="">Испанский шенген</a></li>
+						</ul>
+					</li>
+					<a href=""><li>Новости</li></a>
+					<a href=""><li>О компании</li></a>
+					<a href=""><li>Контакты</li></a>
+				</ul>
+				<ul>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			f
+		</main>
+		<footer>
+			&copy West Visa, 2022
+		</footer>
+		<script>
+			function checkDay(){
+				var date = new Date();
+				var str;
+				var day = date.getDay();
+				switch(day)
+				{
+					case 1:
+						str = "понедельник: 8:00-00:00"
+						break;
+					case 2:
+						str = "вторник: 8:00-00:00"
+						break;
+					case 3:
+						str = "среда: 8:00-00:00"
+						break;
+					case 4:
+						str = "четверг: 8:00-00:00"
+						break;
+					case 5:
+						str = "пятница: 8:00-00:00"
+						break;
+					case 6:
+						str = "суббота: 8:00-06:00"
+						break;
+					case 0:
+						str = "воскресенье: 8:00-06:00"
+						break;
+				}
+				var worktimeWrappers = document.getElementsByClassName("worktime-wrapper");
+				var i;
+				for(i = 0; i < worktimeWrappers.length; ++i)
+					worktimeWrappers[i].append(str);
+				var worktimeLists = document.getElementsByClassName("worktime-list");
+				for(i = 0; i < worktimeLists.length; ++i)
+					worktimeLists[i].children[(day+6)%7].style.color = "rgb(0,191,255)";
+			}
+			checkDay();
+		</script>
+	</body>
+</html>
