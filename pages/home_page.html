@@ -24,7 +24,16 @@
 					</li>
 					<a href="tel:+375447508844"><li class="phone-number">+375 (44) 750-88-44</li></a>
 					<a href="mailto:help.westvisa@gmail.com"><li class="email">help.westvisa@gmail.com</li></a>
-					<li><button class="call-button">Заказать звонок</button></li>
+					<li><button class="call-button" onclick="showForm();">Заказать звонок</button>
+						<div class="call-form-wrapper">
+							<div class="call-form">
+								<span>Закажите бесплатный звонок</span>
+								<form>
+									
+								</form>
+							</div>
+						</div>
+					</li>
 				</ul>
 			</nav>
 			<nav class="menu">
@@ -42,16 +51,32 @@
 									<li>Приглашение на работу</li>
 								</ul>
 							</li>
-							<li><a href="">Карта поляка</a></li>
-							<li><a href="">Испанский шенген</a></li>
+							<a href=""><li>Карта поляка</li></a>
+							<a href=""><li>Испанский шенген</li></a>
 						</ul>
 					</li>
 					<a href=""><li>Новости</li></a>
 					<a href=""><li>О компании</li></a>
 					<a href=""><li>Контакты</li></a>
 				</ul>
-				<ul>
+				<ul id="medium-menu">
+					<li class="worktime">
+						<div class="worktime-wrapper"></div>
+						<ul class="worktime-list">
+							<li>понедельник: 8:00 - 00:00</li>
+							<li>вторник: 8:00 - 00:00</li>
+							<li>среда: 8:00 - 00:00</li>
+							<li>четверг: 8:00 - 00:00</li>
+							<li>пятница: 8:00 - 00:00</li>
+							<li>суббота: 8:00 - 06:00</li>
+							<li>воскресенье: 8:00 - 06:00</li>
+						</ul>
+					</li>
+					<a href="tel:+375447508844"><li class="phone-number">+375 (44) 750-88-44</li></a>
 				</ul>
+				<div class="burger">
+					<img src="../images/burger-icon.png">
+				</div>
 			</nav>
 		</header>
 		<main>
@@ -61,6 +86,9 @@
 			&copy West Visa, 2022
 		</footer>
 		<script>
+			function showForm() {
+				document.getElementById("myDropdown").classList.toggle("show");
+			}
 			function checkDay(){
 				var date = new Date();
 				var str;
@@ -96,6 +124,23 @@
 				var worktimeLists = document.getElementsByClassName("worktime-list");
 				for(i = 0; i < worktimeLists.length; ++i)
 					worktimeLists[i].children[(day+6)%7].style.color = "rgb(0,191,255)";
+			}
+			window.onclick = function(event) {
+				if (!event.target.matches('.burger')) {
+					var dropdowns = document.getElementsByClassName("dropdown-content");
+					var i;
+					for (i = 0; i < dropdowns.length; i++) {
+						var openDropdown = dropdowns[i];
+						if (openDropdown.classList.contains('show')) {
+							openDropdown.classList.remove('show');
+						}
+					}
+				}
+				if(event.target.matches('.polandArrow'))
+				{
+					clearInterval(polandId);
+					polandId = setInterval(changeImage,7000);
+				}
 			}
 			checkDay();
 		</script>

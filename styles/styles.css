@@ -7,7 +7,7 @@ html{
 	font-size: 16px;
 }
 header{
-	position: relative;
+
 	width: 100%;
 }
 header ul{
@@ -22,40 +22,59 @@ header a{
 .wrapper{
 	background: rgb(70 70 70);
 	padding: 10px;
-	font-size: 1.25em;
+	font-size: 1.2rem;
 	color: white;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	
 }
 .wrapper a{
 	color: white;
 }
-.wrapper li[class]:hover{
+.worktime:hover,
+.phone-number:hover,
+.email:hover{
 	text-decoration: underline;
 	color: rgb(0 191 255);
 }
 .wrapper li{
-	margin-left: 20px;
+	margin-left: 10px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
+}
+.wrapper li[class]:before,
+#medium-menu li[class]:before{
+	content: "";
+	display: inline-block;
+	background-position: center;
+	background-size: cover;
+	margin-right: 5px;
 }
 .wrapper li[class]:after{
 	content: "";
 	background: url(../images/line-icon.png);
 	height: 40px;
 	width: 1px;
-	margin-left: 20px;
+	margin-left: 10px;
 	display: inline-block;
 	background-position: center;
 	background-size: cover;
+}
+.worktime:before{
+	background: url(../images/time-icon.png);
+	height: 1.5rem;
+	width: 1.5rem;
 }
 .worktime
 {
 	position: relative;
 	background: inherit;
+}
+.worktime-wrapper{
+
 }
 .worktime-wrapper:after{
 	content: "";
@@ -67,7 +86,7 @@ header a{
 	height: 10px;
 	margin-left: 5px;
 }
-.worktime:hover .worktime-wrapper::after{
+.worktime:hover .worktime-wrapper:after{
 	content: "";
 	display: inline-block;
 	background: url(../images/arrowUp-icon.png);
@@ -77,34 +96,72 @@ header a{
 	height: 10px;
 	margin-left: 5px;
 }
-.worktime:hover .worktime-list {display: block;}
+.worktime:hover .worktime-list {display: flex;}
 .worktime-list{
 	display: none;
 	position: absolute;
-	background: rgb(70 70 70);
+	background: rgb(70, 70, 70);
 	border: 2px solid black;
-	top: 100%;
+	top: 85%;
 	flex-direction: column;
 	z-index: 1;
 	min-width: 250px;
 	color: white;
 	text-decoration: none;
+	padding: 2px 0;
 }
 .worktime-list li{
+	display: flex;
+	justify-content: center;
 	cursor: text;
+	width: 100%;
+	margin: 0;
+}
+.phone-number:before{
+	background: url(../images/phone-icon.png);
+	height: 1.5rem;
+	width: 1.5rem;
+}
+.email:before{
+	background: url(../images/email-icon.png);
+	height: 1.5rem;
+	width: 1.5rem;
 }
 .call-button{
 	padding: 10px 20px;
 	background: rgb(0,191,255);
 	border-radius: 20px;
+	border-width: 0;
+	border: 2px solid black;
 	font-size: 1rem;
 	font-weight: bold;
 	color: white;
 	cursor: pointer;
+	outline: none;
 }
+
 .call-button:hover{
 	background: white;
 	color: rgb(0,191,255);
+}
+.call-button:active+.call-form-wrapper{display:block;}
+.call-form-wrapper{
+	display: none;
+	position: absolute;
+	background: rgba(50,50,50,.5);
+	top: 0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	z-index:2;
+}
+.call-form{
+	float:right;
+	clear:both;
+	min-width:500px;
+	height:100%;
+	background:white;
+	color: black !important;
 }
 .menu{
 	position: relative;
@@ -113,6 +170,7 @@ header a{
 	align-items: center;
 	font-size: 1.25em;
 	height: 60px;
+	color: black;
 }
 .menu a{
 	color: black;
@@ -122,12 +180,11 @@ header a{
 	margin-right: 15px;
 	justify-content: center;
 	align-items: center;
-	color: black;
-	font-size: 1.5em;
+	font-size: 1.5rem;
 	padding: 10px 0;
 }
 .logo img{
-	width: 2.5em;
+	width: 2.5rem;
 }
 #large-menu{
 	height: 100%;
@@ -155,9 +212,30 @@ header a{
 #large-menu li:hover a{
 	color: white;
 }
+
 .visa-menu{
 	position: relative;
 	cursor: pointer;
+}
+.visa-menu:after{
+	content: "";
+	display: inline-block;
+	background: url(../images/arrowDown-icon.png);
+	background-position: center;
+	background-size: cover;
+	width: 10px;
+	height: 10px;
+	margin-left: 5px;
+}
+.visa-menu:hover:after{
+	content: "";
+	display: inline-block;
+	background: url(../images/arrowUpWhite-icon.png);
+	background-position: center;
+	background-size: cover;
+	width: 10px;
+	height: 10px;
+	margin-left: 5px;
 }
 .visa-menu:hover .visa-list{
 	display: flex;
@@ -171,6 +249,7 @@ header a{
 	background: gray;
 	color: white;
 	border: 2px solid black;
+	border-top: none;
 	min-width: 300px;
 }
 .visa-list li,
@@ -178,9 +257,36 @@ header a{
 	width: 100%;
 	height: 100%;
 }
+.visa-list li{
+	padding: 2px 0;
+	border-top: 2px solid black;
+}
+.visa-list li:hover{
+	color: rgb(0,191,255) !important;
+}
 .polish-visa{
 	position: relative;
 	cursor: pointer;
+}
+.polish-visa:after{
+	content: "";
+	display: inline-block;
+	background: url(../images/arrowRightWhite-icon.png);
+	background-position: center;
+	background-size: cover;
+	width: 10px;
+	height: 10px;
+	margin-left: 5px;
+}
+.polish-visa:hover:after{
+	content: "";
+	display: inline-block;
+	background: url(../images/arrowRight-icon.png);
+	background-position: center;
+	background-size: cover;
+	width: 10px;
+	height: 10px;
+	margin-left: 5px;
 }
 .polish-visa:hover .polish-visa-list{
 	display: flex;
@@ -193,7 +299,21 @@ header a{
 	left: 100%;
 	background: gray;
 	border: 2px solid black;
+	border-top: none;
 	min-width: 300px;
+	color: white !important;
+}
+.burger{
+	margin-right:10px;
+	padding:5px;
+	cursor: pointer;
+}
+.burger:hover{
+	background: rgb(40,40,40);
+}
+.burger img{
+	width: 2rem;
+	pointer-events: none;
 }
 /*main*/
 main{
@@ -206,4 +326,46 @@ footer{
 	text-align: center;
 	color: white;
 	font-size: 1.25rem;
+}
+@media (min-width:961px)
+{
+	#medium-menu,.burger{display:none}
+}
+@media (max-width:960px)
+{
+	html{font-size:14px;}
+	.wrapper,#large-menu{display: none;}
+	.menu{ display:flex; justify-content: space-between; background: rgb(70,70,70); color: white;}
+	.menu a{color:white;}
+	#medium-menu{
+		display:flex;
+		justify-content: space-between; 
+		align-items:center; 
+		min-width: 50%;
+
+	}
+	#medium-menu li{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-left: 10px;
+
+	}
+	.logo{margin:0;}
+	.worktime{cursor:pointer;}
+	.worktime-list{
+		top:110%;
+	}
+	.burger{display:flex;}
+}
+@media(min-width: 601px)
+{
+
+}
+@media (max-width:600px)
+{
+	html{font-size:12px;}
+	#medium-menu .worktime{display:none;}
+	#medium-menu{min-width:0;}
+	#medium-menu li{margin:0;}
 }
