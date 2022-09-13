@@ -5,6 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
 		<link rel="stylesheet" href="../styles/styles.css">
 		<title>West Visa - Сайт по туризму и путешествиям</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="../telegramform/js/telegramform.js"></script>
 	</head>
 	<body>
 		<header>
@@ -24,13 +26,50 @@
 					</li>
 					<a href="tel:+375447508844"><li class="phone-number">+375 (44) 750-88-44</li></a>
 					<a href="mailto:help.westvisa@gmail.com"><li class="email">help.westvisa@gmail.com</li></a>
-					<li><button class="call-button" onclick="showForm();">Заказать звонок</button>
+					<li><button class="call-button">Заказать звонок</button>
 						<div class="call-form-wrapper">
-							<div class="call-form">
-								<span>Закажите бесплатный звонок</span>
-								<form>
-									
-								</form>
+							<img class="exit-button">
+							<div class="call-form-block">
+								<div class="form-title">
+									<h2>Закажите бесплатный звонок</h2>
+									<p>Заполните форму - и мы свяжемся с вам в ближайшее время</p>
+								</div>
+								<form id="form-contact" method="POST" class="contact-form" autocomplete="off" enctype="multipart/form-data">
+ 
+  <p class="contact-form__title">Закажите обратный звонок и наш консультант свяжется с вами</p>
+ 
+  <div class="preloader"></div>
+  <p class="contact-form__message"></p>
+ 
+  <!-- Поле с именем -->
+  <div class="contact-form__input-wrapper contact-form__input-wrapper_name">
+    <input name="name" type="text" class="contact-form__input contact-form__input_name"
+           placeholder="Введите ваше имя">
+  </div>
+ 
+  <!-- Поле с телефоном -->
+  <div class="contact-form__input-wrapper contact-form__input-wrapper_phone">
+    <input name="phone" type="tel" class="contact-form__input contact-form__input_phone"
+           placeholder="Введите ваш телефон">
+  </div>
+ 
+  <!-- Поле с выбором файла -->
+  <div class="contact-form__input-wrapper">
+    <input type="file" name="files[]" id="contact-form__input_file"
+           class="contact-form__input contact-form__input_file" multiple>
+    <label for="contact-form__input_file" class="contact-form__file-button">
+      <span class="contact-form__file-text">Выберите файл</span>
+    </label>
+  </div>
+ 
+  <!--Поле с темой в письме-->
+  <input name="theme" type="hidden" class="contact-form__input contact-form__input_theme"
+         value="Заявка с сайта Smartlanding.biz">
+ 
+  <!--Кнопка отправки формы-->
+  <button type="submit" class="contact-form__button">Отправить</button>
+ 
+</form>
 							</div>
 						</div>
 					</li>
@@ -86,9 +125,24 @@
 			&copy West Visa, 2022
 		</footer>
 		<script>
+			const callFormWrapper = document.querySelector(".call-form-wrapper");
+			const callFormBlock = document.querySelector(".call-form-block");
+			const callButton = document.querySelector(".call-button");
 			function showForm() {
-				document.getElementById("myDropdown").classList.toggle("show");
+				callFormWrapper.classList.toggle("show");
 			}
+			callButton.addEventListener("click", function (e) {
+				e.stopPropagation();
+				showForm();
+			});
+			document.addEventListener("click", function (e) {
+				const target = e.target;
+				const isCallFormBlock = target == callFormBlock || callFormBlock.contains(target);
+				const isActive = callFormWrapper.classList.contains("show");
+				if (!isCallFormBlock && isActive) {
+					showForm();
+				}
+			});
 			function checkDay(){
 				var date = new Date();
 				var str;
@@ -125,23 +179,7 @@
 				for(i = 0; i < worktimeLists.length; ++i)
 					worktimeLists[i].children[(day+6)%7].style.color = "rgb(0,191,255)";
 			}
-			window.onclick = function(event) {
-				if (!event.target.matches('.burger')) {
-					var dropdowns = document.getElementsByClassName("dropdown-content");
-					var i;
-					for (i = 0; i < dropdowns.length; i++) {
-						var openDropdown = dropdowns[i];
-						if (openDropdown.classList.contains('show')) {
-							openDropdown.classList.remove('show');
-						}
-					}
-				}
-				if(event.target.matches('.polandArrow'))
-				{
-					clearInterval(polandId);
-					polandId = setInterval(changeImage,7000);
-				}
-			}
+
 			checkDay();
 		</script>
 	</body>
